@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>eSidang - Dashboard Pengadilan Modern</title>
+  
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/enhanced-styles.css">
+  <link rel="stylesheet" href="styles/dashboard.css">
+  <link rel="stylesheet" href="styles/mobile-dashboard.css">
+  
+  <!-- XLSX Library -->
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+</head>
+<body>
+  <div class="modern-dashboard">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <!-- Logo Area (Always Visible) -->
+      <div class="logo-area">
+        <img src="pengadilan.png" alt="Logo Pengadilan" class="logo">
+        <div class="brand">eSidang</div>
+        <button class="sidebar-hamburger" id="sidebarHamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+      
+      <!-- Sidebar Menu (Can be Hidden) -->
+      <ul id="sidebarMenu">
+        <li class="sidebar__item active" data-menu="dashboard">
+          <span class="sidebar-icon">🏠</span>
+          Dashboard
+        </li>
+        <li class="sidebar__item" data-menu="jadwal">
+          <span class="sidebar-icon">📅</span>
+          Jadwal
+        </li>
+        <li class="sidebar__item" data-menu="dokumen">
+          <span class="sidebar-icon">📄</span>
+          Dokumen
+        </li>
+        <li class="sidebar__item" data-menu="presensi">
+          <span class="sidebar-icon">✅</span>
+          Presensi
+        </li>
+        <li class="sidebar__item" data-menu="pemanggilan">
+          <span class="sidebar-icon">📢</span>
+          Pemanggilan
+        </li>
+      </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main>
+      <div id="menuContent">
+        <!-- Dashboard Content -->
+        <header class="main-header">
+          <h1>Selamat Datang di eSidang</h1>
+          <p class="subtitle">Aplikasi Manajemen Sidang Pengadilan Modern</p>
+        </header>
+
+        <div class="dashboard-flex">
+          <div class="dashboard-left">
+            <!-- Sidang Hari Ini -->
+            <div class="card">
+              <h2>📋 Sidang Hari Ini</h2>
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>No</th>
+                      <th>Nama Terpidana</th>
+                      <th>No. Perkara</th>
+                      <th>Jam</th>
+                      <th>Ruang</th>
+                    </tr>
+                  </thead>
+                  <tbody id="tabelSidangBody">
+                    <tr>
+                      <td colspan="5" class="text-center" style="color:#888;font-style:italic;">
+                        Belum ada data sidang.
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Form Input Sidang -->
+            <div class="card">
+              <h2>➕ Tambah Data Sidang</h2>
+              <form id="sidangForm">
+                <div class="form-group">
+                  <label for="inputNama">Nama Terpidana</label>
+                  <input type="text" class="form-control" id="inputNama" placeholder="Masukkan nama terpidana" required>
+                </div>
+                <div class="form-group">
+                  <label for="inputPerkara">Nomor Perkara</label>
+                  <input type="text" class="form-control" id="inputPerkara" placeholder="Contoh: 123/Pid.B/2024/PN.Jkt" required>
+                </div>
+                <div class="form-group">
+                  <label for="inputJam">Jam Sidang</label>
+                  <input type="time" class="form-control" id="inputJam" required>
+                </div>
+                <button type="submit" class="btn btn-primary">
+                  Tambah Data Sidang
+                </button>
+              </form>
+            </div>
+          </div>
+
+          <div class="dashboard-right">
+            <!-- Info Widget -->
+            <div class="card">
+              <h2>ℹ️ Informasi Sistem</h2>
+              <div class="glass-info-widget">
+                <div class="glass-icon">⚖️</div>
+                <div class="glass-text">
+                  <h3>Sistem eSidang</h3>
+                  <p class="glass-sub">Manajemen sidang digital yang modern dan efisien</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="card">
+              <h2>🚀 Aksi Cepat</h2>
+              <div class="d-grid gap-2">
+                <button class="btn btn-success" id="downloadExcel">
+                  📊 Download Excel
+                </button>
+                <button class="btn btn-primary" onclick="window.print()">
+                  🖨️ Cetak Laporan
+                </button>
+              </div>
+            </div>
+
+            <!-- Statistik -->
+            <div class="card">
+              <h2>📈 Statistik</h2>
+              <div class="row text-center">
+                <div class="col-6">
+                  <h3 class="text-primary" id="totalSidang">0</h3>
+                  <small>Total Sidang</small>
+                </div>
+                <div class="col-6">
+                  <h3 class="text-success" id="sidangHariIni">0</h3>
+                  <small>Hari Ini</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <footer class="text-center mt-4">
+        <p>&copy; 2024 eSidang - Sistem Manajemen Sidang Digital</p>
+      </footer>
+    </main>
+  </div>
+
+  <!-- Notification -->
+  <div id="notifSidang" class="notification"></div>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+  
+  <script>
+    // Update statistics
+    function updateStatistics() {
+      const data = getSidangData();
+      document.getElementById('totalSidang').textContent = data.length;
+      document.getElementById('sidangHariIni').textContent = data.length;
+    }
+    
+    // Update stats when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+      setTimeout(updateStatistics, 100);
+    });
+  </script>
+</body>
+</html>

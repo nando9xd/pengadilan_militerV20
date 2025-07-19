@@ -1,0 +1,345 @@
+body {
+  background: linear-gradient(120deg, #3a7bd5 0%, #00d2ff 100%);
+  font-family: "Poppins", Arial, sans-serif;
+  margin: 0;
+  min-height: 100vh;
+}
+
+.modern-dashboard {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  background: #fff;
+  width: 220px;
+  box-shadow: 2px 0 24px rgba(44, 62, 80, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px 0;
+}
+
+.logo-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.logo {
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 8px rgba(44, 62, 80, 0.1);
+  background: #f6f9fc;
+}
+
+.brand {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #3a7bd5;
+  letter-spacing: 1px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.sidebar ul li {
+  padding: 14px 0;
+  text-align: center;
+  color: #3a7bd5;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  border-radius: 8px;
+  margin-bottom: 6px;
+}
+
+.sidebar ul li.active,
+.sidebar ul li:hover {
+  background: #3a7bd5;
+  color: #fff;
+}
+
+main {
+  flex: 1;
+  padding: 38px 48px;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-header {
+  margin-bottom: 32px;
+}
+
+.main-header h1 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #3a7bd5;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  color: #222;
+  font-size: 1.08rem;
+  margin-bottom: 0;
+}
+
+.cards {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+}
+
+.card {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 2px 16px rgba(44, 62, 80, 0.08);
+  padding: 28px 24px;
+  flex: 1 1 280px;
+  min-width: 260px;
+  transition: box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.card.highlight {
+  background: linear-gradient(120deg, #3a7bd5 0%, #00d2ff 100%);
+  color: #fff;
+}
+
+.card h2 {
+  font-size: 1.18rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.card ul li {
+  font-size: 1.05rem;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.card.highlight ul li {
+  color: #fff;
+}
+
+.jam {
+  background: #fff;
+  color: #3a7bd5;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 8px;
+  font-size: 0.98rem;
+}
+
+.perkara {
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+
+.ruang {
+  background: #eaf1fb;
+  color: #3a7bd5;
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-size: 0.98rem;
+}
+
+.card .call-widget {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 8px;
+  width: 100%;
+}
+
+.call-widget select,
+.call-widget input[type="text"] {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1.5px solid #3a7bd5;
+  font-size: 1rem;
+  font-family: "Poppins", Arial, sans-serif;
+  background: #f6f9fc;
+  transition: border 0.2s;
+}
+
+.call-widget input[type="text"] {
+  background: #eaf1fb;
+  font-weight: 600;
+}
+
+.call-widget button {
+  background: linear-gradient(90deg, #3a7bd5 0%, #00d2ff 100%);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 0;
+  font-size: 1.08rem;
+  cursor: pointer;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(44, 62, 80, 0.1);
+  transition: background 0.2s, transform 0.2s;
+}
+
+.call-widget button:hover {
+  background: linear-gradient(90deg, #00d2ff 0%, #3a7bd5 100%);
+  transform: translateY(-2px) scale(1.04);
+}
+
+.card ul li.active .status {
+  color: #3a7bd5;
+  font-weight: 700;
+}
+.card ul li.next .status {
+  color: #222;
+}
+.card ul li.absent .status {
+  color: #d7263d;
+  font-weight: 700;
+}
+
+footer {
+  text-align: center;
+  color: #888;
+  font-size: 0.98rem;
+  margin-top: auto;
+  padding-top: 24px;
+}
+
+@media (max-width: 900px) {
+  .modern-dashboard {
+    flex-direction: column;
+  }
+  .sidebar {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 18px 0;
+  }
+  .logo-area {
+    flex-direction: row;
+    gap: 10px;
+    margin-bottom: 0;
+  }
+  main {
+    padding: 18px 8px;
+  }
+  .cards {
+    flex-direction: column;
+    gap: 18px;
+  }
+  .card {
+    min-width: unset;
+    padding: 18px 10px;
+  }
+}
+
+const hearingsToday = [
+  { time: "09:00", case: "342/A/2025", room: "II" },
+  { time: "10:30", case: "123/B/2025", room: "I" },
+];
+const queue = [
+  { case: "342/A/2025", status: "active", room: "II" },
+  { case: "123/B/2025", status: "next", room: "I" },
+  { case: "999/C/2025", status: "absent", room: "III" }
+];
+
+function panggilSidang() {
+  const select = document.getElementById("perkaraSelect");
+  const selected = select.options[select.selectedIndex];
+  const nomor = selected.value;
+  const ruang = selected.getAttribute("data-ruang");
+  const text = `Nomor perkara ${nomor} dipanggil ke Ruang Sidang ${ruang}`;
+  document.getElementById("callText").value = text;
+
+  const synth = window.speechSynthesis;
+  let voices = synth.getVoices();
+  let indoFemale = voices.find(v => v.lang.startsWith("id") && v.name.toLowerCase().includes("female"));
+  if (!indoFemale) indoFemale = voices.find(v => v.lang.startsWith("id"));
+  if (!indoFemale) indoFemale = voices.find(v => v.lang.startsWith("id-ID"));
+  if (!indoFemale) indoFemale = voices.find(v => v.lang.startsWith("id"));
+
+  const utter = new SpeechSynthesisUtterance(text);
+  utter.lang = "id-ID";
+  if (indoFemale) utter.voice = indoFemale;
+  synth.speak(utter);
+}
+
+document.getElementById("app").innerHTML = `
+  <div class="modern-dashboard">
+    <nav class="sidebar">
+      <div class="logo-area">
+        <img src="../public/logo-pengadilan.png" alt="Logo Pengadilan" class="logo" />
+        <span class="brand">eSidang</span>
+      </div>
+      <ul>
+        <li class="active">Dashboard</li>
+        <li>Jadwal</li>
+        <li>Dokumen</li>
+        <li>Presensi</li>
+        <li>Pemanggilan</li>
+      </ul>
+    </nav>
+    <main>
+      <header class="main-header">
+        <h1>Selamat Datang di eSidang</h1>
+        <p class="subtitle">Aplikasi Manajemen Sidang Pengadilan Modern</p>
+      </header>
+      <section class="cards">
+        <div class="card highlight">
+          <h2>Sidang Hari Ini</h2>
+          <ul>
+            ${hearingsToday.map(h => `<li><span class="jam">${h.time}</span> <span class="perkara">${h.case}</span> <span class="ruang">Ruang ${h.room}</span></li>`).join("")}
+          </ul>
+        </div>
+        <div class="card">
+          <h2>Antrian Perkara</h2>
+          <ul>
+            ${queue.map(q => `
+              <li class="${q.status}">
+                <span class="perkara">${q.case}</span>
+                <span class="ruang">Ruang ${q.room}</span>
+                <span class="status">${q.status === "active" ? "Aktif" : q.status === "next" ? "Berikutnya" : "Tidak Hadir"}</span>
+              </li>
+            `).join("")}
+          </ul>
+        </div>
+        <div class="card">
+          <h2>Pemanggilan Digital</h2>
+          <div class="call-widget">
+            <select id="perkaraSelect">
+              ${hearingsToday.map(h => `<option value="${h.case}" data-ruang="${h.room}">${h.case} (Ruang ${h.room})</option>`).join("")}
+            </select>
+            <input type="text" id="callText" value="Nomor perkara 342/A/2025 dipanggil ke Ruang Sidang II" readonly />
+            <button onclick="panggilSidang()">🔊 Panggil Suara</button>
+          </div>
+        </div>
+      </section>
+      <footer>
+        <p>© 2025 Pengadilan Negeri. All rights reserved.</p>
+      </footer>
+    </main>
+  </div>
+`;
+
+if ('speechSynthesis' in window) {
+  window.speechSynthesis.onvoiceschanged = function() {};
+}
